@@ -1,53 +1,24 @@
 <?php
+/*
+Plugin Name: wp-gutenberg-practice-plugin
+Description: A Gutenberg block development plugin
+Version: 1.0
+Author: Hunter Cox
+AuthrURI: https://huntercox.dev
+*/
 
-/**
- * @package hsc_my_first_block
- *
- * @wordpress-plugin
- * Plugin Name: HSC My First Block
- * Description: Creating my first Gutenberg block.
- * Version: 1.0.0
- * Author: Hunter Cox
- * Author URI: www.huntercox.dev
- * License: GPL-2.0+
- * License URI: http://www.gnu.org/licenses/gpl-2.0.txt
- * Text Domain: hsc-my-first-block
- */
-add_action('init', 'hsc_my_first_block_register_post_type');
-function hsc_my_first_block_register_post_type()
-{
-	register_post_type(
-		'product',
-		array(
-			'labels'       => array(
-				'name'          => __('Products', 'tutorial'),
-				'singular_name' => __('Product', 'tutorial'),
-			),
-			'public'       => true,
-			'has_archive'  => true,
-			'show_in_rest' => true,
-			'supports'     => array(
-				'title',
-				'editor',
-				'thumbnail',
-				'excerpt',
-				'custom-fields',
-			),
-		)
-	);
+// Exit if accessed directly.
+if (!defined('ABSPATH')) {
+	exit;
 }
 
-add_action('init', 'hsc_my_first_block_register_post_meta');
-function hsc_my_first_block_register_post_meta()
-{
-	register_post_meta(
-		'product', // post-type
-		'testimonial', // meta-key
-		array(
-			'show_in_rest'       => true,
-			'single'             => true,
-			'type'               => 'string',
-			'sanitize_callback'  => 'wp_kses_post',
-		)
-	);
-}
+// Define constants.
+define('HSC_GUTENBERG_PRACTICE_PLUGIN_PATH', plugin_dir_path(__FILE__));
+define('HSC_GUTENBERG_PRACTICE_PLUGIN_URL', plugin_dir_url(__FILE__));
+
+// Require init class.
+require_once HSC_GUTENBERG_PRACTICE_PLUGIN_PATH . 'inc/class-plugin-init.php';
+
+// Call init class.
+$init_class = new Plugin_Init();
+$init_class->init();
