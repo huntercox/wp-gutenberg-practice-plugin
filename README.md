@@ -1,5 +1,3 @@
-# My First Block (Gutenberg)
+# My Gutenberg Block Development Practice
 
-
-Just seeing if I can do this tutorial:
-https://developer.wordpress.org/news/2023/03/creating-a-custom-block-that-stores-post-meta/
+Just a plugin that holds a collection of my attempts at Block Development.
